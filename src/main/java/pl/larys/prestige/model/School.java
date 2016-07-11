@@ -56,6 +56,7 @@ public class School {
         this.activities = activities;
     }
 
+
     public Employee getEmployee() {
         return employee;
     }

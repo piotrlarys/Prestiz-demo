@@ -1,8 +1,7 @@
 package pl.larys.prestige.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by piotr on 23.06.16.
@@ -23,7 +22,8 @@ public class Activity {
     @OneToMany
     private List<Student> students;
 
-    private Date date;
+    @OneToMany(mappedBy = "activity")
+    private List<Attendance> attendances;
 
     public Integer getId() {
         return id;
@@ -57,11 +57,11 @@ public class Activity {
         this.students = students;
     }
 
-    public Date getDate() {
-        return date;
+    public List<Attendance> getAttendances() {
+        return attendances;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
     }
 }

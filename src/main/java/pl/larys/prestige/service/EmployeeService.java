@@ -2,6 +2,7 @@ package pl.larys.prestige.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.larys.prestige.model.Employee;
 import pl.larys.prestige.model.School;
 import pl.larys.prestige.repository.EmployeeRepository;
@@ -29,8 +30,22 @@ public class EmployeeService {
         return employeeRepository.findOne(id);
     }
 
+    @Transactional
     public Employee findOneWithSchools(int id) {
         Employee employee = findOne(id);
+        List<School> schools = schoolRepository.findByEmployee(employee);
+        employee.setSchools(schools);
+        return employee;
+    }
+
+    @Transactional
+    public Employee findEmployeeByEmail(String email) {
+        return employeeRepository.findEmployeeByEmail(email);
+    }
+
+    @Transactional
+    public Employee findEmployeeWithActivities(String email) {
+        Employee employee = findEmployeeByEmail(email);
         List<School> schools = schoolRepository.findByEmployee(employee);
         employee.setSchools(schools);
         return employee;

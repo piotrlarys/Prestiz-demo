@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "pl.larys.prestige.controller")
+@ComponentScan(basePackages = "pl.larys.prestige")
 public class DispatcherContext extends WebMvcConfigurerAdapter {
 
     /**

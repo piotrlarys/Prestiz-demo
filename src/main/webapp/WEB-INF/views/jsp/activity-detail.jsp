@@ -2,8 +2,6 @@
 
 <%@ include file="../tiles/layout/taglib.jsp" %>
 
-<h1>${activity.name}</h1>
-
 <div>
 
     <!-- Nav tabs -->
@@ -23,27 +21,78 @@
 
 </div>
 
-<table class="table table-bordered table-hover table-striped">
+<script>
+    $(document).ready(function() {
+        $('input[type="checkbox"]').click(function() {
+            var index = $(this).attr('name').substr(3);
+            index--;
+            $('table tr').each(function() {
+                //$('td:eq(' + index + ')',this).toggle();
+            });
+            $('th.' + $(this).attr('name')).toggle();
+        });
+    });
+</script>
+
+<br />
+
+<form>
+    <c:forEach items="${months}" var="month" varStatus="index">
+        <input type="checkbox" name="col${index.count}" checked="checked" />${month.name}
+    </c:forEach>
+</form>
+
+<br />
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover table-sm table-striped-column">
     <thead>
     <tr>
+        <th colspan="3">${activity.name}</th>
+
+        <c:forEach items="${months}" var="month" varStatus="index">
+            <th colspan="${month.day.size()}" class="col${index.count}">${month.name}</th>
+        </c:forEach>
+    </tr>
+    <tr>
+        <th>Nr</th>
         <th>Imię i nazwisko</th>
         <th>Klasa</th>
+
+        <c:forEach items="${months}" var="mounth" varStatus="index">
+            <c:forEach items="${mounth.day}" var="attendance">
+                <th class="col${index.count}">${attendance}</th>
+            </c:forEach>
+        </c:forEach>
 
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${activity.students}" var="student">
+    <c:forEach items="${activity.students}" var="student" varStatus="index">
 
         <tr>
-            <td>
+            <td style="width: 40px">
+                ${index.count}
+            </td>
+            <td style="width: 150px">
                 ${student.firstName} ${student.lastName}
             </td>
-            <td>
+            <td style="width: 50px">
                 ${student.studentClass}
             </td>
+
+            <c:forEach items="${months}" var="mounth" varStatus="index">
+                <c:forEach items="${mounth.day}" var="attendance">
+                    <th class="col${index.count}"><input type="checkbox"></th>
+                </c:forEach>
+            </c:forEach>
         </tr>
-
-
     </c:forEach>
     </tbody>
 </table>
+</div>
+
+
+
+
+

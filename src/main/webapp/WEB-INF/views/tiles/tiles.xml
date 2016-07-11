@@ -22,6 +22,12 @@
     <definition name="employee-detail" extends="common">
         <put-attribute name="title" value="Instruktor - detale" />
         <put-attribute name="body" value="/WEB-INF/views/jsp/employee-detail.jsp" />
+        <put-attribute name="current" value="employee" />
+    </definition>
+
+    <definition name="school-activity" extends="common">
+        <put-attribute name="title" value="Przedszkole - detale" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/school-activity.jsp" />
         <put-attribute name="current" value="employees" />
     </definition>
 
@@ -35,5 +41,17 @@
         <put-attribute name="title" value="Zajęcia" />
         <put-attribute name="body" value="/WEB-INF/views/jsp/activity-detail.jsp" />
         <put-attribute name="current" value="employees" />
+    </definition>
+
+    <definition name="school" extends="common">
+        <put-attribute name="title" value="Przedszkola" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/school.jsp" />
+        <put-attribute name="current" value="employees" />
+    </definition>
+
+    <definition name="login" extends="common">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
+        <put-attribute name="current" value="login" />
     </definition>
 </tiles-definitions>

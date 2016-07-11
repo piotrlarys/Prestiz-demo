@@ -2,8 +2,7 @@
 
 <%@ include file="../tiles/layout/taglib.jsp" %>
 
-<h1>${employee.firstName} ${employee.lastName}</h1>
-${employee.phone}
+<h1>${school.name}</h1>
 
 <table class="table table-bordered table-hover table-striped">
     <thead>
@@ -13,12 +12,12 @@ ${employee.phone}
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${employee.schools}" var="school">
+    <c:forEach items="${school.activities}" var="activity">
 
         <tr>
             <td>
-                <a href="<spring:url value="/zajecia/przedszkole/${school.id}.html" />">
-                        ${school.name}
+                <a href="<spring:url value="/zajecia/${activity.id}.html" />">
+                    ${activity.name}
                 </a>
 
             </td>

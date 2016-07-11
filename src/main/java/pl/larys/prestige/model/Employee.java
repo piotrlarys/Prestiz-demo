@@ -26,12 +26,11 @@ public class Employee {
     @Email
     private String email;
 
-    @Size(min = 6)
     private String password;
 
     private String phone;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable
     private List<Role> roles;
 

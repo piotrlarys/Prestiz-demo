@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,9 +51,22 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'>Home</a></li>
-                    <li class="${current == 'employees' ? 'active' : ''}"><a href="<spring:url value="/instruktorzy.html"/>">Instruktorzy</a></li>
+                    <security:authorize access="hasAnyRole('ROLE_ADMIN')">
+                        <li class="${current == 'employees' ? 'active' : ''}"><a href="<spring:url value="/przedszkola.html"/>">Przedszkola</a></li>
+                    </security:authorize>
+                    <security:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+                        <li class="${current == 'employee' ? 'active' : ''}"><a href="<spring:url value="/zajecia.html"/>">Zajęcia</a></li>
+                    </security:authorize>
                     <li><a href="#">Contact</a></li>
 
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <security:authorize access="! isAuthenticated()">
+                        <li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login.html" />'>Zaloguj</a></li>
+                    </security:authorize>
+                    <security:authorize access="isAuthenticated()">
+                        <li><a href='<spring:url value="/logout" />'>Wyloguj</a></li>
+                    </security:authorize>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
