@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="common" template="/WEB-INF/views/tiles/layout/classic.jsp">
+        <put-attribute name="footer" value="/WEB-INF/views/tiles/layout/footer.jsp" />
+    </definition>
+
+    <definition name="index" extends="common">
+        <put-attribute name="title" value="Szkoła tańca Prestiż - Demo" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/index.jsp" />
+        <put-attribute name="current" value="index" />
+    </definition>
+
+    <definition name="employees" extends="common">
+        <put-attribute name="title" value="Instruktorzy" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/employees.jsp" />
+        <put-attribute name="current" value="employees" />
+    </definition>
+
+    <definition name="employee-detail" extends="common">
+        <put-attribute name="title" value="Instruktor - detale" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/employee-detail.jsp" />
+        <put-attribute name="current" value="employees" />
+    </definition>
+
+    <definition name="school-detail" extends="common">
+        <put-attribute name="title" value="Przedszkole - detale" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/school-detail.jsp" />
+        <put-attribute name="current" value="employees" />
+    </definition>
+
+    <definition name="activity-detail" extends="common">
+        <put-attribute name="title" value="Zajęcia" />
+        <put-attribute name="body" value="/WEB-INF/views/jsp/activity-detail.jsp" />
+        <put-attribute name="current" value="employees" />
+    </definition>
+</tiles-definitions>
