@@ -54,4 +54,10 @@ public class EmployeeController {
         return "redirect:/instruktorzy.html";
     }
 
+    @RequestMapping(value = "/instruktorzy/remove/{id}")
+    public String removeEmployee(@PathVariable int id) {
+        employeeService.delete(id);
+        return "redirect:/instruktorzy.html";
+    }
+
 }

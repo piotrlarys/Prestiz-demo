@@ -58,8 +58,8 @@
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
-            <th>Instruktorzy</th>
-
+            <th>Imię i nazwisko</th>
+            <th>Operacje</th>
         </tr>
     </thead>
     <tbody>
@@ -70,7 +70,11 @@
                     <a href="<spring:url value="/instruktorzy/${employee.id}.html" />">
                         ${employee.firstName} ${employee.lastName}
                     </a>
-
+                </td>
+                <td>
+                    <a href="<spring:url value="/instruktorzy/delete/${employee.id}" />" class="btn btn-primary">Przypisz przedszkole</a>
+                    &nbsp&nbsp
+                    <a href="<spring:url value="/instruktorzy/remove/${employee.id}.html" />" class="btn btn-danger">Usuń</a>
                 </td>
             </tr>
 
