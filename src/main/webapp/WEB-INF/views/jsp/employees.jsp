@@ -1,13 +1,59 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: piotr
-  Date: 28.06.16
-  Time: 18:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="../tiles/layout/taglib.jsp" %>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Dodaj instruktora
+</button>
+
+<form:form commandName="employee" cssClass="form-horizontal registrationForm">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Nowy instruktor</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Imię:</label>
+                        <div class="col-sm-10">
+                            <form:input path="firstName" cssClass="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Nazwisko:</label>
+                        <div class="col-sm-10">
+                            <form:input path="lastName" cssClass="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Email:</label>
+                        <div class="col-sm-10">
+                            <form:input path="email" cssClass="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Hasło:</label>
+                        <div class="col-sm-10">
+                            <form:input path="password" cssClass="form-control"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <input type="submit" class="btn btn-primary" value="Zapisz" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form:form>
+
+<br />
 
 <table class="table table-bordered table-hover table-striped">
     <thead>

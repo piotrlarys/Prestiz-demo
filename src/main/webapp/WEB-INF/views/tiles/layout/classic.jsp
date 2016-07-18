@@ -52,7 +52,10 @@
                 <ul class="nav navbar-nav">
                     <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'>Home</a></li>
                     <security:authorize access="hasAnyRole('ROLE_ADMIN')">
-                        <li class="${current == 'employees' ? 'active' : ''}"><a href="<spring:url value="/przedszkola.html"/>">Przedszkola</a></li>
+                        <li class="${current == 'schools' ? 'active' : ''}"><a href="<spring:url value="/przedszkola.html"/>">Przedszkola</a></li>
+                    </security:authorize>
+                    <security:authorize access="hasAnyRole('ROLE_ADMIN')">
+                        <li class="${current == 'employees' ? 'active' : ''}"><a href="<spring:url value="/instruktorzy.html"/>">Instruktorzy</a></li>
                     </security:authorize>
                     <security:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
                         <li class="${current == 'employee' ? 'active' : ''}"><a href="<spring:url value="/zajecia.html"/>">Zajęcia</a></li>
