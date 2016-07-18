@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ADMIN')")
+                .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ADMIN')")
                 .antMatchers("/zajecia**", "zajecia/**").access("hasRole('EMPLOYEE')")
                 .and().formLogin().loginPage("/login.html")
                 .usernameParameter("ssoId").passwordParameter("password")
