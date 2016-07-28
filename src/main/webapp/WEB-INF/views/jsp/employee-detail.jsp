@@ -24,12 +24,17 @@ ${employee.phone}
                 <div class="modal-body">
 
                     <c:forEach items="${schools}" var="school">
-                        <div>
-                            <c:if test="${school.employee eq null}">
-                                ${school.name}
-                                <input type="checkbox">
-                            </c:if>
-                        </div>
+                        <c:if test="${school.employee eq null}">
+                            <div class="form-group">
+                                <label id="id" for="id" class="col-sm-2 control-label">Przedszkole:</label>
+                                <div class="col-sm-10">
+                                    <div>
+                                        <form:hidden path="id" cssClass="form-control" value="${school.id}" />
+                                        ${school.name} <form:checkbox path="checked"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                     </c:forEach>
 
 

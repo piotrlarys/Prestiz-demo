@@ -25,18 +25,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @SuppressWarnings("SpringJavaAutowiringInspection")
     private CustomEmployeeDetailsService customEmployeeDetailsService;
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-//        auth.inMemoryAuthentication().withUser("piotr").password("piotr").roles("USER");
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ADMIN')")
-                .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ADMIN')")
-                .antMatchers("/zajecia**", "zajecia/**").access("hasRole('EMPLOYEE')")
+                .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/zajecia**", "zajecia/**").access("hasRole('ROLE_EMPLOYEE')")
                 .and().formLogin().loginPage("/login.html")
                 .usernameParameter("ssoId").passwordParameter("password")
                 .and().csrf().disable().logout().logoutUrl("/logout").logoutSuccessUrl("/");

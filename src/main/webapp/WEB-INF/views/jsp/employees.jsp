@@ -19,7 +19,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Imię:</label>
+                        <label id="name" for="name" class="col-sm-2 control-label">Imię:</label>
                         <div class="col-sm-10">
                             <form:input path="firstName" cssClass="form-control"/>
                         </div>
@@ -72,8 +72,6 @@
                     </a>
                 </td>
                 <td>
-                    <a href="<spring:url value="/instruktorzy/delete/${employee.id}" />" class="btn btn-primary">Dodaj przedszkole</a>
-                    &nbsp&nbsp
                     <a href="<spring:url value="/instruktorzy/remove/${employee.id}.html" />" class="btn btn-danger">Usuń</a>
                 </td>
             </tr>
