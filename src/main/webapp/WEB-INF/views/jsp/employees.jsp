@@ -83,11 +83,12 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
                             <c:forEach items="${schools}" var="school" varStatus="index">
-                                <li>
+                                <li id="link${index.count}">
                                     <a onclick="addSchool(${index.count}, ${emIndex.count})">
                                         ${school.name}
-                                        <input type="text"  id="employee${emIndex.count}"  value="${employee.id}">
-                                        <input type="text"  id="school${index.count}"  value="${school.id}">
+                                        <input type="text" hidden id="employee${emIndex.count}"  value="${employee.id}">
+                                        <input type="text" hidden id="school${index.count}"  value="${school.id}">
+                                        <input type="text" hidden id="index${index.count}"  value="${index.count}">
                                     </a>
                                 </li>
                             </c:forEach>

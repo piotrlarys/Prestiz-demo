@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="../tiles/layout/taglib.jsp" %>
+<script src="<c:url value="/static/js/app.js" />"></script>
 
 <div>
 
@@ -20,19 +21,6 @@
     </div>
 
 </div>
-
-<script>
-    $(document).ready(function() {
-        $('input[type="checkbox"]').click(function() {
-            var index = $(this).attr('name').substr(3);
-            index--;
-            $('table tr').each(function() {
-                //$('td:eq(' + index + ')',this).toggle();
-            });
-            $('th.' + $(this).attr('name')).toggle();
-        });
-    });
-</script>
 
 <br />
 

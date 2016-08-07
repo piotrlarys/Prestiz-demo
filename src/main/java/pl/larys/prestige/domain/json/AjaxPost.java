@@ -9,6 +9,16 @@ public class AjaxPost {
 
     private int schoolId;
 
+    private String index;
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }

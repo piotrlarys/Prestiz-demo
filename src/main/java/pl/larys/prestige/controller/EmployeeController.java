@@ -63,12 +63,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/instruktorzy/addschool", method = RequestMethod.POST)
     @ResponseBody
-    //public String addSchoolToEmployee(@RequestParam(value = "employeeId") String employeeId, @RequestParam(value = "schoolId") String schoolId) {
-    public String addSchoolToEmployee(@RequestBody AjaxPost test) {
-
-        System.out.println(test.getEmployeeId());
-
-        return "redirect:/instruktorzy.html";
+    public String addSchoolToEmployee(@RequestBody AjaxPost postData) {
+        schoolService.setSchoolToEmployee(postData.getSchoolId(), employeeService.findOne(postData.getEmployeeId()));
+        return postData.getIndex();
     }
 
 

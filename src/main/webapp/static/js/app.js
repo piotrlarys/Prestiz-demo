@@ -1,16 +1,21 @@
-// jQuery(document).ready(function($) {
-//
-//     $('.dropdown-toggle').dropdown('toggle');
-//     //$('#msg').html("This is updated by jQuery")
-//
-//
-// });
+//activity-detail: dynamic table
+$(document).ready(function() {
+    $('input[type="checkbox"]').click(function() {
+        var index = $(this).attr('name').substr(3);
+        index--;
+        $('table tr').each(function() {
+            //$('td:eq(' + index + ')',this).toggle();
+        });
+        $('th.' + $(this).attr('name')).toggle();
+    });
+});
 
-function addSchool(schoolid, employeeId) {
+function addSchool(schoolId, employeeId) {
 
     var schoolData = {
         "employeeId": $("#employee"+employeeId).val(),
-        "schoolId": $("#school"+schoolid).val()
+        "schoolId": $("#school"+schoolId).val(),
+        "index": $("#index"+schoolId).val()
     }
 
     $(function () {
@@ -28,7 +33,8 @@ function addSchool(schoolid, employeeId) {
         url: "/instruktorzy/addschool.html",
         data: JSON.stringify(schoolData), // Note it is important
         success : function(data) {
-            console.log("Hello");
+            $("#link"+data).remove();
+            alert("Przypisano przedszkole !");
         }
     });
 }
