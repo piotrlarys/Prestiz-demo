@@ -1,16 +1,18 @@
-package pl.larys.prestige.model;
+package pl.larys.prestige.domain.entity;
+
+
 
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
- * Created by piotr on 02.07.16.
+ * Created by piotr on 23.06.16.
  */
+
 @Entity
-public class Employee {
+public class Student {
 
     @Id
     @GeneratedValue
@@ -22,20 +24,19 @@ public class Employee {
     @Size(min = 3)
     private String lastName;
 
+    private String studentClass;
+
     @Size(min = 1)
     @Email
     private String email;
 
+    @Size(min = 6)
     private String password;
 
-    private String phone;
+    @ManyToOne
+    @JoinColumn(name = "activities_id")
+    private Activity activity;
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable
-    private List<Role> roles;
-
-    @OneToMany(mappedBy = "employee")
-    private List<School> schools;
 
     public Integer getId() {
         return id;
@@ -77,28 +78,19 @@ public class Employee {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getStudentClass() {
+        return studentClass;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setStudentClass(String studentClass) {
+        this.studentClass = studentClass;
     }
-
-    public List<School> getSchools() {
-        return schools;
-    }
-
-    public void setSchools(List<School> schools) {
-        this.schools = schools;
-    }
-
 }

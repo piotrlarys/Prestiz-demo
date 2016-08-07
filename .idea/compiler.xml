@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Prestige" />
+        <module name="Prestiz-demo2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Prestige" target="1.8" />
+      <module name="Prestiz-demo2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

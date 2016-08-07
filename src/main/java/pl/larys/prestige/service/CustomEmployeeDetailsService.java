@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import pl.larys.prestige.model.Employee;
+import pl.larys.prestige.domain.entity.Employee;
 import pl.larys.prestige.security.SecurityUser;
 
 

@@ -3,7 +3,7 @@ package pl.larys.prestige.helper;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
-import pl.larys.prestige.model.Attendance;
+import pl.larys.prestige.domain.entity.Attendance;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

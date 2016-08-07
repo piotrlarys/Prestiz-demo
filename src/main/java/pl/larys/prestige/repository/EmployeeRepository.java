@@ -1,10 +1,7 @@
 package pl.larys.prestige.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.larys.prestige.model.Employee;
-import pl.larys.prestige.model.School;
-
-import java.util.List;
+import pl.larys.prestige.domain.entity.Employee;
 
 /**
  * Created by piotr on 02.07.16.

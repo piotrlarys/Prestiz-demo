@@ -37,7 +37,7 @@ public class HibernateConfiguration {
 //    public LocalSessionFactoryBean sessionFactoryBean() {
 //        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 //        sessionFactoryBean.setDataSource(dataSource());
-//        sessionFactoryBean.setPackagesToScan(new String[] {"pl.larys.prestige.model"});
+//        sessionFactoryBean.setPackagesToScan(new String[] {"pl.larys.prestige.domain.model"});
 //        sessionFactoryBean.setHibernateProperties(hibernateProperties());
 //        return sessionFactoryBean;
 //    }
@@ -50,7 +50,7 @@ public class HibernateConfiguration {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("pl.larys.prestige.model");
+        factory.setPackagesToScan("pl.larys.prestige.domain.entity");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(hibernateProperties());
         factory.afterPropertiesSet();

@@ -1,4 +1,4 @@
-package pl.larys.prestige.model;
+package pl.larys.prestige.domain.entity;
 
 import javax.persistence.*;
 import java.util.List;

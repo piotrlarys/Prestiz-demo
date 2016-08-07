@@ -23,8 +23,8 @@ ${employee.phone}
                 </div>
                 <div class="modal-body">
 
+
                     <c:forEach items="${schools}" var="school">
-                        <c:if test="${school.employee eq null}">
                             <div class="form-group">
                                 <label id="id" for="id" class="col-sm-2 control-label">Przedszkole:</label>
                                 <div class="col-sm-10">
@@ -34,7 +34,6 @@ ${employee.phone}
                                     </div>
                                 </div>
                             </div>
-                        </c:if>
                     </c:forEach>
 
 
@@ -55,6 +54,7 @@ ${employee.phone}
     <thead>
     <tr>
         <th>Zajęcia</th>
+        <th>Operacje</th>
 
     </tr>
     </thead>
@@ -66,7 +66,9 @@ ${employee.phone}
                 <a href="<spring:url value="/zajecia/przedszkole/${school.id}.html" />">
                         ${school.name}
                 </a>
-
+            </td>
+            <td>
+                <a href="<spring:url value="/instruktorzy/przedszkole/remove/${school.id}.html" />" class="btn btn-danger">Usuń</a>
             </td>
         </tr>
 

@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.larys.prestige.model.Employee;
-import pl.larys.prestige.model.School;
-import pl.larys.prestige.service.ActivityService;
+import pl.larys.prestige.domain.entity.School;
 import pl.larys.prestige.service.EmployeeService;
 import pl.larys.prestige.service.SchoolService;
 

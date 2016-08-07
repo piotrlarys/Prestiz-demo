@@ -3,8 +3,8 @@ package pl.larys.prestige.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.larys.prestige.model.Employee;
-import pl.larys.prestige.model.School;
+import pl.larys.prestige.domain.entity.Employee;
+import pl.larys.prestige.domain.entity.School;
 import pl.larys.prestige.repository.EmployeeRepository;
 import pl.larys.prestige.repository.SchoolRepository;
 

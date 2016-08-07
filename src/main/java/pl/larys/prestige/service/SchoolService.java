@@ -2,13 +2,13 @@ package pl.larys.prestige.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.larys.prestige.model.Activity;
-import pl.larys.prestige.model.Employee;
-import pl.larys.prestige.model.School;
+import pl.larys.prestige.domain.entity.Activity;
+import pl.larys.prestige.domain.entity.Employee;
+import pl.larys.prestige.domain.entity.School;
 import pl.larys.prestige.repository.ActivityRepository;
-import pl.larys.prestige.repository.EmployeeRepository;
 import pl.larys.prestige.repository.SchoolRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +27,18 @@ public class SchoolService {
         return schoolRepository.findAll();
     }
 
+    public List<School> findAllFreeSchools() {
+
+        List<School> schools = schoolRepository.findAll();
+        List<School> freeSchoolList = new ArrayList<>();
+
+        for (School school: schools) {
+            if (school.getEmployee() == null)
+                freeSchoolList.add(school);
+        }
+        return freeSchoolList;
+    }
+
     public School findOne(int id) {
         return schoolRepository.findOne(id);
     }
@@ -42,10 +54,15 @@ public class SchoolService {
         schoolRepository.save(school);
     }
 
-//    public School findOneWithEmployee(int id) {
-//        School school = findOne(id);
-//        Employee employee = employeeRepository.findByEmployee(school);
-//        school.setEmployee(employee);
-//        return school;
-//    }
+    public void deleteSchoolFromEmployee(int id) {
+        School school = schoolRepository.findOne(id);
+        school.setEmployee(null);
+        schoolRepository.save(school);
+    }
+
+    public void setSchoolToEmployee(int id, Employee employee) {
+        School school = schoolRepository.findOne(id);
+        school.setEmployee(employee);
+        schoolRepository.save(school);
+    }
 }

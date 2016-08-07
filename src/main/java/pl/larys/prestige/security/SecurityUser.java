@@ -3,8 +3,8 @@ package pl.larys.prestige.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.larys.prestige.model.Employee;
-import pl.larys.prestige.model.Role;
+import pl.larys.prestige.domain.entity.Employee;
+import pl.larys.prestige.domain.entity.Role;
 
 import java.util.ArrayList;
 import java.util.Collection;

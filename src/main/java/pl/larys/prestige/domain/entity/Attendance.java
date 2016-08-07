@@ -1,4 +1,4 @@
-package pl.larys.prestige.model;
+package pl.larys.prestige.domain.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

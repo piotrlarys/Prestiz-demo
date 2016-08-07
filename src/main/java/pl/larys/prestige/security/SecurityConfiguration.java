@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.larys.prestige.service.CustomEmployeeDetailsService;
 
 /**
@@ -31,11 +32,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/zajecia**", "zajecia/**").access("hasRole('ROLE_EMPLOYEE')")
-                .and().formLogin().loginPage("/login.html")
-                .usernameParameter("ssoId").passwordParameter("password")
-                .and().csrf().disable().logout().logoutUrl("/logout").logoutSuccessUrl("/");
-
-    }
+                .and()
+                .formLogin().loginPage("/login.html").usernameParameter("ssoId").passwordParameter("password")
+                .and()
+                .csrf()
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied")
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
+            }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
