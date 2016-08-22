@@ -47,17 +47,19 @@
         <th>Imię i nazwisko</th>
         <th>Klasa</th>
 
+
         <c:forEach items="${months}" var="mounth" varStatus="index">
-            <c:forEach items="${mounth.day}" var="attendance">
-                <th class="col${index.count}">${attendance}</th>
+            <c:forEach items="${mounth.mapDays}" var="attendance">
+                <th class="col${index.count}">${attendance['key']}</th>
             </c:forEach>
         </c:forEach>
+
 
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${activity.students}" var="student" varStatus="index">
-
+        ${student.presences[0].presence}
         <tr>
             <td style="width: 40px">
                 ${index.count}
@@ -70,14 +72,17 @@
             </td>
 
             <c:forEach items="${months}" var="mounth" varStatus="index">
-                <c:forEach items="${mounth.day}" var="attendance">
-                    <th class="col${index.count}"><input type="checkbox"></th>
+                <c:forEach items="${mounth.mapDays}" var="attendance">
+                    <th class="col${index.count}"><input class="messageCheckbox"
+                        value="${attendance['value']}" type="checkbox" onclick="savePresence(${student.id})" >
+                    </th>
                 </c:forEach>
             </c:forEach>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+<input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" >
 </div>
 
 

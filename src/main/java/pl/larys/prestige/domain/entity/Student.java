@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by piotr on 23.06.16.
@@ -32,6 +33,9 @@ public class Student {
 
     @Size(min = 6)
     private String password;
+
+    @OneToMany(mappedBy = "student")
+    private List<Presence> presences;
 
     @ManyToOne
     @JoinColumn(name = "activities_id")
@@ -92,5 +96,13 @@ public class Student {
 
     public void setStudentClass(String studentClass) {
         this.studentClass = studentClass;
+    }
+
+    public List<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(List<Presence> presences) {
+        this.presences = presences;
     }
 }

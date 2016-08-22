@@ -29,16 +29,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/zajecia**", "zajecia/**").access("hasRole('ROLE_EMPLOYEE')")
+                .antMatchers("/przedszkola**", "/przedszkola/**").access("hasRole('ADMIN')")
+                .antMatchers("/instruktorzy**", "/instruktorzy/**").access("hasRole('ADMIN')")
+                .antMatchers("/zajecia**", "/zajecia/**").access("hasRole('EMPLOYEE')")
                 .and()
-                .formLogin().loginPage("/login.html").usernameParameter("ssoId").passwordParameter("password")
+                .formLogin()
+                .loginPage("/login.html")
+                //.permitAll().defaultSuccessUrl("/index")
+                .usernameParameter("ssoId").passwordParameter("password")
                 .and()
                 .csrf()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied")
+                //.and().exceptionHandling().accessDeniedPage("/Access_Denied")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout.html"))
+                //.logoutUrl("/logout.html")
+                .logoutSuccessUrl("/")
+                .permitAll();
             }
 
     @Bean

@@ -7,10 +7,7 @@ import pl.larys.prestige.domain.entity.Attendance;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by piotr on 07.07.16.
@@ -122,18 +119,20 @@ public class DateConverter {
     public List<ActivityInMonth> getMonth(List<Attendance> attendances) {
 
         List<ActivityInMonth> activityInMonths = getAllMonthsNames(attendances);
-        List<Integer> dayWrz = new ArrayList<>();
-        List<Integer> dayPaz = new ArrayList<>();
-        List<Integer> dayLis = new ArrayList<>();
-        List<Integer> dayGru = new ArrayList<>();
-        List<Integer> daySt = new ArrayList<>();
-        List<Integer> dayLu = new ArrayList<>();
-        List<Integer> dayMar = new ArrayList<>();
-        List<Integer> dayKw = new ArrayList<>();
-        List<Integer> dayMaj = new ArrayList<>();
-        List<Integer> dayCz = new ArrayList<>();
-        List<Integer> dayLip = new ArrayList<>();
-        List<Integer> daySier = new ArrayList<>();
+        List<String> dayWrz = new ArrayList<>();
+        List<String> dayPaz = new ArrayList<>();
+        List<String> dayLis = new ArrayList<>();
+        List<String> dayGru = new ArrayList<>();
+        List<String> daySt = new ArrayList<>();
+        List<String> dayLu = new ArrayList<>();
+        List<String> dayMar = new ArrayList<>();
+        List<String> dayKw = new ArrayList<>();
+        List<String> dayMaj = new ArrayList<>();
+        List<String> dayCz = new ArrayList<>();
+        List<String> dayLip = new ArrayList<>();
+        List<String> daySier = new ArrayList<>();
+
+        TreeMap<Integer, String> test = new TreeMap<>();
 
         int month = 0;
 
@@ -144,51 +143,54 @@ public class DateConverter {
             //System.out.println(dateTime.toString("MM"));
 
             if (month == 1) {
-                daySt.add(dateTime.getDayOfMonth());
+                daySt.add(dateTime.toString("dd"));
                 st.setDay(daySt);
             }
             if (month == 2) {
-                dayLu.add(dateTime.getDayOfMonth());
+                dayLu.add(dateTime.toString("dd"));
                 lut.setDay(dayLu);
             }
             if (month == 3) {
-                dayMar.add(dateTime.getDayOfMonth());
+                dayMar.add(dateTime.toString("dd"));
                 mar.setDay(dayMar);
             }
             if (month == 4) {
-                dayKw.add(dateTime.getDayOfMonth());
+                dayKw.add(dateTime.toString("dd"));
                 kw.setDay(dayKw);
             }
             if (month == 5) {
-                dayMaj.add(dateTime.getDayOfMonth());
+                dayMaj.add(dateTime.toString("dd"));
                 maj.setDay(dayMaj);
             }
             if (month == 6) {
-                dayCz.add(dateTime.getDayOfMonth());
+                dayCz.add(dateTime.toString("dd"));
                 czw.setDay(dayCz);
             }
             if (month == 7) {
-                dayLip.add(dateTime.getDayOfMonth());
+                dayLip.add(dateTime.toString("dd"));
                 lip.setDay(dayLip);
             }
             if (month == 8) {
-                daySier.add(dateTime.getDayOfMonth());
+                daySier.add(dateTime.toString("dd"));
                 sier.setDay(daySier);
             }
             if (month == 9) {
-                dayWrz.add(dateTime.getDayOfMonth());
+                test.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                dayWrz.add(dateTime.toString("dd"));
                 wrz.setDay(dayWrz);
+                wrz.setMapDays(test);
+                //wrz.setFullDate(dateTime.toString("dd.MM.yyyy"));
             }
             if (month == 10) {
-                dayPaz.add(dateTime.getDayOfMonth());
+                dayPaz.add(dateTime.toString("dd"));
                 paz.setDay(dayPaz);
             }
             if (month == 11) {
-                dayLis.add(dateTime.getDayOfMonth());
+                dayLis.add(dateTime.toString("dd"));
                 lis.setDay(dayLis);
             }
             if (month == 12) {
-                dayGru.add(dateTime.getDayOfMonth());
+                dayGru.add(dateTime.toString("dd"));
                 gru.setDay(dayGru);
             }
 

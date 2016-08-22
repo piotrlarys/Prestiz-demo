@@ -68,7 +68,7 @@
                         <li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login.html" />'>Zaloguj</a></li>
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
-                        <li><a href='<spring:url value="/logout" />'>Wyloguj</a></li>
+                        <li><a href='<spring:url value="/logout.html" />'>Wyloguj</a></li>
                     </security:authorize>
                 </ul>
             </div><!--/.nav-collapse -->
