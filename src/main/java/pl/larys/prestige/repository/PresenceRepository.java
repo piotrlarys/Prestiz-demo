@@ -13,4 +13,6 @@ public interface PresenceRepository extends JpaRepository<Presence, Long> {
 
     List<Presence> findPresencesByStudent(Student student);
 
+    Presence findPresenceByDate(String date);
+
 }

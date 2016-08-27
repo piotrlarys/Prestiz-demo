@@ -19,7 +19,7 @@ public class Activity {
     @JoinColumn(name = "school_id")
     private School school;
 
-    @OneToMany
+    @OneToMany(mappedBy = "activity")
     private List<Student> students;
 
     @OneToMany(mappedBy = "activity")

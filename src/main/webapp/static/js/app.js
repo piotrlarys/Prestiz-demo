@@ -10,11 +10,12 @@ $(document).ready(function() {
     });
 });
 
-function savePresence(id) {
+function savePresence(id, date, checked) {
 
     var presences = {
         "id": id,
-        "date": $('.messageCheckbox:checked').val()
+        "date": date,
+        "checked": checked
     }
 
     $(function () {
@@ -29,10 +30,14 @@ function savePresence(id) {
             type: "POST",
             contentType : 'application/json',
             dataType : 'json',
+            async: false,
             url: "/zajecia/addpresence.html",
             data: JSON.stringify(presences), // Note it is important
             success : function(response) {
-                console.log(response);
+
+                $("#dataTable").hide().fadeIn('fast');
+                comparePresences();
+                //location.reload()
             }
         });
 }

@@ -132,7 +132,18 @@ public class DateConverter {
         List<String> dayLip = new ArrayList<>();
         List<String> daySier = new ArrayList<>();
 
-        TreeMap<Integer, String> test = new TreeMap<>();
+        TreeMap<Integer, String> wrzMap = new TreeMap<>();
+        TreeMap<Integer, String> pazMap = new TreeMap<>();
+        TreeMap<Integer, String> lisMap = new TreeMap<>();
+        TreeMap<Integer, String> gruMap = new TreeMap<>();
+        TreeMap<Integer, String> stMap = new TreeMap<>();
+        TreeMap<Integer, String> luMap = new TreeMap<>();
+        TreeMap<Integer, String> marMap = new TreeMap<>();
+        TreeMap<Integer, String> kwMap = new TreeMap<>();
+        TreeMap<Integer, String> majMap = new TreeMap<>();
+        TreeMap<Integer, String> czMap = new TreeMap<>();
+        TreeMap<Integer, String> lipMap = new TreeMap<>();
+        TreeMap<Integer, String> sierMap = new TreeMap<>();
 
         int month = 0;
 
@@ -140,56 +151,76 @@ public class DateConverter {
 
             DateTime dateTime = new DateTime(attendance.getDate());
             month = dateTime.getMonthOfYear();
-            //System.out.println(dateTime.toString("MM"));
 
             if (month == 1) {
+                stMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                st.setMapDays(stMap);
                 daySt.add(dateTime.toString("dd"));
                 st.setDay(daySt);
             }
             if (month == 2) {
+                luMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                lut.setMapDays(luMap);
                 dayLu.add(dateTime.toString("dd"));
                 lut.setDay(dayLu);
             }
             if (month == 3) {
+                marMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                mar.setMapDays(marMap);
                 dayMar.add(dateTime.toString("dd"));
                 mar.setDay(dayMar);
             }
             if (month == 4) {
+                kwMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                kw.setMapDays(kwMap);
                 dayKw.add(dateTime.toString("dd"));
                 kw.setDay(dayKw);
             }
             if (month == 5) {
+                majMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                maj.setMapDays(majMap);
                 dayMaj.add(dateTime.toString("dd"));
                 maj.setDay(dayMaj);
             }
             if (month == 6) {
+                czMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                czw.setMapDays(czMap);
                 dayCz.add(dateTime.toString("dd"));
                 czw.setDay(dayCz);
             }
             if (month == 7) {
+                lipMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                lip.setMapDays(lipMap);
                 dayLip.add(dateTime.toString("dd"));
                 lip.setDay(dayLip);
             }
             if (month == 8) {
+                sierMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                sier.setMapDays(sierMap);
                 daySier.add(dateTime.toString("dd"));
                 sier.setDay(daySier);
             }
             if (month == 9) {
-                test.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                wrzMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                wrz.setMapDays(wrzMap);
                 dayWrz.add(dateTime.toString("dd"));
                 wrz.setDay(dayWrz);
-                wrz.setMapDays(test);
-                //wrz.setFullDate(dateTime.toString("dd.MM.yyyy"));
             }
             if (month == 10) {
+                pazMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                paz.setMapDays(pazMap);
                 dayPaz.add(dateTime.toString("dd"));
                 paz.setDay(dayPaz);
             }
             if (month == 11) {
+                lipMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                lis.setMapDays(lipMap);
                 dayLis.add(dateTime.toString("dd"));
                 lis.setDay(dayLis);
             }
             if (month == 12) {
+                gruMap.put(dateTime.getDayOfMonth(), dateTime.toString("dd.MM.yyyy"));
+                gru.setMapDays(gruMap);
                 dayGru.add(dateTime.toString("dd"));
                 gru.setDay(dayGru);
             }

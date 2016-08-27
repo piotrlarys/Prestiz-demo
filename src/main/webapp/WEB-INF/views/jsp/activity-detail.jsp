@@ -3,6 +3,7 @@
 <%@ include file="../tiles/layout/taglib.jsp" %>
 <script src="<c:url value="/static/js/app.js" />"></script>
 
+
 <div>
 
     <!-- Nav tabs -->
@@ -32,7 +33,7 @@
 
 <br />
 
-<div class="table-responsive">
+<div class="table-responsive" id="dataTable">
 <table class="table table-bordered table-hover table-sm table-striped-column">
     <thead>
     <tr>
@@ -50,7 +51,7 @@
 
         <c:forEach items="${months}" var="mounth" varStatus="index">
             <c:forEach items="${mounth.mapDays}" var="attendance">
-                <th class="col${index.count}">${attendance['key']}</th>
+                <th class="col${index.count}">${attendance['key']}<input class="dateInput" hidden  value="${attendance['value']}"></th>
             </c:forEach>
         </c:forEach>
 
@@ -59,7 +60,6 @@
     </thead>
     <tbody>
     <c:forEach items="${activity.students}" var="student" varStatus="index">
-        ${student.presences[0].presence}
         <tr>
             <td style="width: 40px">
                 ${index.count}
@@ -73,8 +73,8 @@
 
             <c:forEach items="${months}" var="mounth" varStatus="index">
                 <c:forEach items="${mounth.mapDays}" var="attendance">
-                    <th class="col${index.count}"><input class="messageCheckbox"
-                        value="${attendance['value']}" type="checkbox" onclick="savePresence(${student.id})" >
+                    <th class="col${index.count}"><input class="messageCheckbox student${student.id}"
+                        value="${attendance['value']}" type="checkbox" onclick="savePresence(${student.id}, '${attendance['value']}', this.checked)" >
                     </th>
                 </c:forEach>
             </c:forEach>
@@ -85,7 +85,20 @@
 <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" >
 </div>
 
+<script>
 
+    function comparePresences() {
 
+        <c:forEach items="${activity.students}" var="student" varStatus="index">
+               <c:forEach items="${student.presences}" var="presence" varStatus="index">
+                        $('.student${student.id}').map(function(index) {
+                           if (this.value == '${presence.date}'){
+                                this.checked = true;
+                           }
+                        });
+               </c:forEach>
+        </c:forEach>
+    }
+    window.onload=comparePresences;
 
-
+</script>

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.larys.prestige.domain.entity.Presence;
 import pl.larys.prestige.domain.entity.Student;
-import pl.larys.prestige.domain.json.PresenceJsonResponse;
+import pl.larys.prestige.domain.json.AjaxPresence;
 import pl.larys.prestige.repository.PresenceRepository;
 
 import java.util.List;
@@ -22,27 +22,27 @@ public class PresenceService {
     @Autowired
     private StudentService studentService;
 
-    public String save(String date, int id) {
-        Student student = studentService.findStudentById(id);
+    public String save(AjaxPresence ajaxPresence) {
+        Student student = studentService.findStudentById(ajaxPresence.getId());
         Presence presence = new Presence();
-        presence.setDate(date);
-        presence.isPresence();
+        presence.setDate(ajaxPresence.getDate());
+        presence.setPresence(true);
         presence.setStudent(student);
         presenceRepository.save(presence);
+        return new Gson().toJson(ajaxPresence);
+    }
 
-        PresenceJsonResponse jsonResponse = new PresenceJsonResponse();
-        jsonResponse.setId(id);
-        jsonResponse.setDate(date);
-
-        String json = new Gson().toJson(jsonResponse);
-        return json;
+    public String delete(AjaxPresence ajaxPresence) {
+        List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
+        presences.stream().filter(p -> p
+                .getDate().equals(ajaxPresence.getDate()))
+                .forEach(p -> presenceRepository.delete(p.getId()));
+        return new Gson().toJson(ajaxPresence);
     }
 
     public List<Presence> findAllPresencesWithStudent(Student student) {
-        List<Presence> presences = presenceRepository.findPresencesByStudent(student);
-        return presences;
+        return presenceRepository.findPresencesByStudent(student);
     }
-
 
 
 }

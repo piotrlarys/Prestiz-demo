@@ -5,9 +5,11 @@ package pl.larys.prestige.domain.json;
  */
 public class AjaxPresence {
 
-    String date;
+    private int id;
 
-    int id;
+    private String date;
+
+    private boolean checked;
 
     public String getDate() {
         return date;
@@ -22,6 +24,15 @@ public class AjaxPresence {
     }
 
     public void setId(int id) {
+
         this.id = id;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

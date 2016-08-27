@@ -14,6 +14,7 @@ public class Presence {
 
     private boolean presence;
 
+    //@Column(unique = true)
     private String date;
 
     @ManyToOne

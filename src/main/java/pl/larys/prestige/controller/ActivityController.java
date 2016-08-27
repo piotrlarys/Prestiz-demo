@@ -2,6 +2,7 @@ package pl.larys.prestige.controller;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,17 +50,6 @@ public class ActivityController {
     @RequestMapping("/zajecia/{id}")
     public String detail(Model model, @PathVariable int id) {
 
-        Activity allStudentsWithActivity = activityService.findAllStudentsWithActivity(id);
-        List<Student> students = allStudentsWithActivity.getStudents();
-
-
-//        for (Student student : students) {
-//
-//            List<Presence> allPresencesWithStudent = presenceService.findAllPresencesWithStudent(student);
-//            System.out.println(allPresencesWithStudent);
-//            //System.out.println(student.getPresences());
-//        }
-        //model.addAttribute("presences", presenceService)
         model.addAttribute("activity", activityService.findAllStudentsWithActivity(id));
         model.addAttribute("months", new DateConverter().getMonth(activityService.findAllAttendacesWithActivity(id)));
 
@@ -68,12 +58,11 @@ public class ActivityController {
 
     @RequestMapping(value = "/zajecia/addpresence", method = RequestMethod.POST)
     public @ResponseBody String addPresence(@RequestBody AjaxPresence ajaxPresence) {
-        //presenceService.save(ajaxPresence.getDate(), ajaxPresence.getId());
-        //List<Presence> strings = studentService.findPresencesWithStudent(ajaxPresence.getId());
 
-
-
-        return presenceService.save(ajaxPresence.getDate(), ajaxPresence.getId());
+        if (ajaxPresence.isChecked())
+            return presenceService.save(ajaxPresence);
+        else
+            return presenceService.delete(ajaxPresence);
     }
 
 }

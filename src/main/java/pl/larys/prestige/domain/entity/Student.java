@@ -34,11 +34,10 @@ public class Student {
     @Size(min = 6)
     private String password;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Presence> presences;
 
     @ManyToOne
-    @JoinColumn(name = "activities_id")
     private Activity activity;
 
 
