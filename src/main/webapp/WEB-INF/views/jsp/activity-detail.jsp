@@ -2,6 +2,7 @@
 
 <%@ include file="../tiles/layout/taglib.jsp" %>
 <script src="<c:url value="/static/js/app.js" />"></script>
+<link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
 
 
 <div>
@@ -73,8 +74,10 @@
 
             <c:forEach items="${months}" var="mounth" varStatus="index">
                 <c:forEach items="${mounth.mapDays}" var="attendance">
-                    <th class="col${index.count}"><input class="messageCheckbox student${student.id}"
-                        value="${attendance['value']}" type="checkbox" onclick="savePresence(${student.id}, '${attendance['value']}', this.checked)" >
+                    <th class="col${index.count}">
+                        <button onclick="savePresence(${student.id}, '${attendance['value']}')">
+                        </button>
+
                     </th>
                 </c:forEach>
             </c:forEach>
@@ -98,7 +101,8 @@
                         });
                </c:forEach>
         </c:forEach>
+
     }
     window.onload=comparePresences;
 
-</script>
+</dasdasd

@@ -9,6 +9,7 @@ import pl.larys.prestige.domain.json.AjaxPresence;
 import pl.larys.prestige.repository.PresenceRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by piotr on 15.08.16.
@@ -22,25 +23,40 @@ public class PresenceService {
     @Autowired
     private StudentService studentService;
 
-    public String save(AjaxPresence ajaxPresence) {
+    public void maintainPresence(AjaxPresence ajaxPresence) {
+        List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
+
+        if (presences.isEmpty())
+            save(ajaxPresence);
+
+        presences
+                .forEach(it -> {
+                    if ((it.getDate()).equals(ajaxPresence.getDate())) {
+                        if (it.isPresence()) {
+                            it.setPresence(false);
+                            presenceRepository.save(it);
+                        } else presenceRepository.delete(it.getId());
+                    }
+                });
+    }
+
+    private void save(AjaxPresence ajaxPresence) {
         Student student = studentService.findStudentById(ajaxPresence.getId());
         Presence presence = new Presence();
         presence.setDate(ajaxPresence.getDate());
         presence.setPresence(true);
         presence.setStudent(student);
         presenceRepository.save(presence);
-        return new Gson().toJson(ajaxPresence);
     }
 
-    public String delete(AjaxPresence ajaxPresence) {
-        List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
-        presences.stream().filter(p -> p
-                .getDate().equals(ajaxPresence.getDate()))
-                .forEach(p -> presenceRepository.delete(p.getId()));
-        return new Gson().toJson(ajaxPresence);
-    }
+//    public void delete(AjaxPresence ajaxPresence) {
+//        List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
+//        presences.stream().filter(p -> p
+//                .getDate().equals(ajaxPresence.getDate()))
+//                .forEach(p -> presenceRepository.delete(p.getId()));
+//    }
 
-    public List<Presence> findAllPresencesWithStudent(Student student) {
+    private List<Presence> findAllPresencesWithStudent(Student student) {
         return presenceRepository.findPresencesByStudent(student);
     }
 

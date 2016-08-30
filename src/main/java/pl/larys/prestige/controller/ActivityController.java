@@ -59,10 +59,8 @@ public class ActivityController {
     @RequestMapping(value = "/zajecia/addpresence", method = RequestMethod.POST)
     public @ResponseBody String addPresence(@RequestBody AjaxPresence ajaxPresence) {
 
-        if (ajaxPresence.isChecked())
-            return presenceService.save(ajaxPresence);
-        else
-            return presenceService.delete(ajaxPresence);
+        presenceService.maintainPresence(ajaxPresence);
+        return new Gson().toJson(ajaxPresence);
     }
 
 }

@@ -10,36 +10,35 @@ $(document).ready(function() {
     });
 });
 
-function savePresence(id, date, checked) {
+function savePresence(id, date) {
 
-    var presences = {
-        "id": id,
-        "date": date,
-        "checked": checked
-    }
+    console.log(date);
+     var presences = {
+         "id": id,
+         "date": date
+     }
 
-    $(function () {
+     $(function () {
 
-            var token = $("input[name='_csrf']").val();
-            var header = "X-CSRF-TOKEN";
-            $(document).ajaxSend(function(e, xhr, options) {
-                xhr.setRequestHeader(header, token);
-            });
-        });
-        $.ajax({
-            type: "POST",
-            contentType : 'application/json',
-            dataType : 'json',
-            async: false,
-            url: "/zajecia/addpresence.html",
-            data: JSON.stringify(presences), // Note it is important
-            success : function(response) {
-
-                $("#dataTable").hide().fadeIn('fast');
-                comparePresences();
-                //location.reload()
-            }
-        });
+             var token = $("input[name='_csrf']").val();
+             var header = "X-CSRF-TOKEN";
+             $(document).ajaxSend(function(e, xhr, options) {
+                 xhr.setRequestHeader(header, token);
+             });
+         });
+         $.ajax({
+             type: "POST",
+             contentType : 'application/json',
+             dataType : 'json',
+             async: true,
+             url: "/zajecia/addpresence.html",
+             data: JSON.stringify(presences), // Note it is important
+             success : function(response) {
+                 $("#dataTable").hide().fadeIn('fast');
+                 //comparePresences();
+                 //location.reload()
+             }
+         });
 }
 
 function addSchool(schoolId, employeeId) {
