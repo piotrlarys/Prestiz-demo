@@ -34,9 +34,10 @@ function savePresence(id, date) {
              url: "/zajecia/addpresence.html",
              data: JSON.stringify(presences), // Note it is important
              success : function(response) {
-                 $("#dataTable").hide().fadeIn('fast');
+                 //$("#dataTable").hide().fadeIn('fast');
                  //comparePresences();
-                 //location.reload()
+
+                 location.reload()
              }
          });
 }

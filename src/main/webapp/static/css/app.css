@@ -42,4 +42,34 @@
     float:left;
 }
 
+.padding {
+    overflow:auto;
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: bold;
+    line-height: 200%;
+
+}
+
+.button-green {
+    overflow:auto;
+    background-color: #4caf50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 15px;
+
+}
+.button-red {
+    background-color: #e60000; /* Red */
+    border: none;
+    color: white;
+    padding: 15px 15px;
+}
+
+.button-white {
+    background-color: #c2c2a3; /* White */
+    border: none;
+    color: white;
+    padding: 15px 15px;
+}
 
