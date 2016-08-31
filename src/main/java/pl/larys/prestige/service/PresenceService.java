@@ -1,6 +1,5 @@
 package pl.larys.prestige.service;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.larys.prestige.domain.entity.Presence;
@@ -25,9 +24,12 @@ public class PresenceService {
 
     public void maintainPresence(AjaxPresence ajaxPresence) {
         List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
+        List<String> dates = presences.stream().map(Presence::getDate).collect(Collectors.toList());
 
-        if (presences.isEmpty())
+        if (!dates.contains(ajaxPresence.getDate()) || presences.isEmpty()) {
             save(ajaxPresence);
+            dates.clear();
+        }
 
         presences
                 .forEach(it -> {
@@ -48,13 +50,6 @@ public class PresenceService {
         presence.setStudent(student);
         presenceRepository.save(presence);
     }
-
-//    public void delete(AjaxPresence ajaxPresence) {
-//        List<Presence> presences = findAllPresencesWithStudent(studentService.findStudentById(ajaxPresence.getId()));
-//        presences.stream().filter(p -> p
-//                .getDate().equals(ajaxPresence.getDate()))
-//                .forEach(p -> presenceRepository.delete(p.getId()));
-//    }
 
     private List<Presence> findAllPresencesWithStudent(Student student) {
         return presenceRepository.findPresencesByStudent(student);
